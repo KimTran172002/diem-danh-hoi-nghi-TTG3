@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="auth-wrap admin-auth">
+  <div class="auth-intro">
+    <div class="eyebrow">KHU VỰC ĐIỀU HÀNH</div>
+    <h1>Quản trị hội nghị</h1>
+    <p>Quản lý danh sách đại biểu, tài liệu và trạng thái điểm danh tại một nơi.</p>
+  </div>
+  <form class="panel auth-panel" method="post" action="/admin/login">
+    <div class="panel-icon">⚙</div><h2>Đăng nhập quản trị</h2>
+    {% if error %}<div class="alert error">{{ error }}</div>{% endif %}
+    <label for="username">Tài khoản</label><input id="username" name="username" autocomplete="username" required>
+    <label for="password">Mật khẩu</label><input id="password" type="password" name="password" autocomplete="current-password" required>
+    <button class="btn primary full" type="submit">Đăng nhập quản trị <span>→</span></button>
+    <p class="hint">Thông tin đăng nhập do đơn vị quản trị hệ thống cung cấp.</p>
+  </form>
+</section>
+{% endblock %}

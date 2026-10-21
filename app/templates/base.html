@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102a43">
+  <title>{{ page_title or "Điểm danh hội nghị" }}</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script defer src="/static/app.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="/">
+    <span class="brand-mark">HN</span>
+    <span><strong>HỘI NGHỊ</strong><small>Hệ thống điểm danh và văn bản</small></span>
+  </a>
+  <nav>
+    {% if is_admin %}
+      <a href="/admin">Quản trị</a>
+      <form action="/logout" method="post" class="inline-form"><button class="nav-button" type="submit">Đăng xuất</button></form>
+    {% else %}
+      <a href="/documents">Văn bản</a>
+      <a href="/admin/login" class="muted-link">Quản trị</a>
+      {% if request.session.get("role") == "participant" %}
+        <form action="/logout" method="post" class="inline-form"><button class="nav-button" type="submit">Thoát</button></form>
+      {% endif %}
+    {% endif %}
+  </nav>
+</header>
+<main class="page">
+  {% block content %}{% endblock %}
+</main>
+<footer class="footer">Hệ thống phục vụ công tác tổ chức hội nghị · Vui lòng liên hệ ban tổ chức nếu cần hỗ trợ.</footer>
+</body>
+</html>

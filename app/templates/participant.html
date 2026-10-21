@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="welcome-row">
+  <div><div class="eyebrow">KHÔNG GIAN ĐẠI BIỂU</div><h1>Xin chào, {{ person["full_name"] }}</h1>
+    <p class="subtle">Thông tin hội nghị và các văn bản do ban tổ chức cung cấp.</p></div>
+  <span class="role-pill">{{ person["role"] }}</span>
+</section>
+<div class="profile-strip">
+  <div><span>Mã đại biểu</span><strong>{{ person["code"] }}</strong></div>
+  <div><span>Đơn vị</span><strong>{{ person["organization"] or "Chưa cập nhật" }}</strong></div>
+  <div><span>Chức vụ</span><strong>{{ person["position"] or person["role"] }}</strong></div>
+</div>
+<section class="section-heading"><div><div class="eyebrow">THƯ VIỆN TÀI LIỆU</div><h2>Văn bản hội nghị</h2><p class="subtle">Chọn một văn bản để mở và đọc trực tiếp trên trình duyệt.</p></div><span class="count-pill">{{ documents|length }} tài liệu</span></section>
+{% if documents %}
+<div class="document-grid">
+  {% for doc in documents %}
+  <article class="document-card">
+    <div class="pdf-icon">PDF</div>
+    <div class="document-info"><h3>{{ doc["title"] }}</h3><p>{{ doc["original_name"] }}</p><small>Đăng tải {{ doc["uploaded_at"] }}</small></div>
+    <a class="btn primary" href="/documents/{{ doc['id'] }}/view" target="_blank" rel="noopener">Đọc văn bản ↗</a>
+  </article>
+  {% endfor %}
+</div>
+{% else %}
+<div class="empty-state"><div class="empty-icon">▤</div><h3>Chưa có văn bản</h3><p>Ban tổ chức chưa tải lên tài liệu. Vui lòng quay lại sau.</p></div>
+{% endif %}
+{% endblock %}
