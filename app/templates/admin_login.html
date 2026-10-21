@@ -1,18 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
-<section class="auth-wrap admin-auth">
-  <div class="auth-intro">
-    <div class="eyebrow">KHU VỰC ĐIỀU HÀNH</div>
-    <h1>Quản trị hội nghị</h1>
-    <p>Quản lý danh sách đại biểu, tài liệu và trạng thái điểm danh tại một nơi.</p>
+<section class="admin-login-layout">
+  <div class="admin-login-aside">
+    <div class="overline"><span class="overline-line"></span> KHU VỰC ĐIỀU HÀNH</div>
+    <h1>Quản trị<br><em>hội nghị.</em></h1>
+    <p>Không gian dành riêng cho Ban tổ chức quản lý đại biểu, tài liệu và công tác điểm danh.</p>
+    <div class="security-note"><span class="security-icon">▣</span><span><strong>Khu vực bảo mật</strong><small>Chỉ sử dụng tài khoản quản trị được cấp.</small></span></div>
+    <div class="auth-watermark">HN</div>
   </div>
-  <form class="panel auth-panel" method="post" action="/admin/login">
-    <div class="panel-icon">⚙</div><h2>Đăng nhập quản trị</h2>
-    {% if error %}<div class="alert error">{{ error }}</div>{% endif %}
-    <label for="username">Tài khoản</label><input id="username" name="username" autocomplete="username" required>
-    <label for="password">Mật khẩu</label><input id="password" type="password" name="password" autocomplete="current-password" required>
-    <button class="btn primary full" type="submit">Đăng nhập quản trị <span>→</span></button>
-    <p class="hint">Thông tin đăng nhập do đơn vị quản trị hệ thống cung cấp.</p>
+  <form class="surface-card auth-card admin-auth-card" method="post" action="/admin/login">
+    <div class="card-kicker">QUẢN TRỊ VIÊN</div>
+    <div class="auth-symbol admin-symbol" aria-hidden="true">⌘</div>
+    <h2>Chào mừng trở lại</h2>
+    <p class="muted">Đăng nhập để tiếp tục điều hành hội nghị.</p>
+    {% if error %}<div class="alert error" role="alert">{{ error }}</div>{% endif %}
+    <label for="username">Tài khoản</label>
+    <input id="username" name="username" autocomplete="username" placeholder="Nhập tài khoản quản trị" required>
+    <label for="password">Mật khẩu</label>
+    <input id="password" type="password" name="password" autocomplete="current-password" placeholder="Nhập mật khẩu" required>
+    <button class="button button-primary button-wide" type="submit">Đăng nhập quản trị <span aria-hidden="true">→</span></button>
+    <p class="form-footnote">Thông tin đăng nhập do đơn vị quản trị hệ thống cung cấp.</p>
   </form>
 </section>
 {% endblock %}

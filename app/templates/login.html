@@ -1,22 +1,29 @@
 {% extends "base.html" %}
 {% block content %}
-<section class="auth-wrap">
-  <div class="auth-intro">
-    <div class="eyebrow">CỔNG THÔNG TIN HỘI NGHỊ</div>
-    <h1>Chào mừng đại biểu</h1>
-    <p>Đăng nhập để xem các văn bản, tài liệu được ban tổ chức cung cấp.</p>
-    <div class="feature-list"><span>✓ Đọc văn bản PDF trực tuyến</span><span>✓ Tối ưu cho điện thoại và máy tính</span></div>
+<section class="auth-layout">
+  <div class="auth-story">
+    <div class="overline"><span class="overline-line"></span> CỔNG THÔNG TIN CHÍNH THỨC</div>
+    <h1>Kết nối thông tin.<br><em>Thống nhất hành động.</em></h1>
+    <p class="story-copy">Truy cập các văn bản, chương trình và tài liệu do Ban tổ chức cung cấp trong suốt thời gian diễn ra hội nghị.</p>
+    <div class="story-points">
+      <div class="story-point"><span class="point-icon">01</span><span><strong>Tài liệu tập trung</strong><small>Tra cứu văn bản tại một nơi</small></span></div>
+      <div class="story-point"><span class="point-icon">02</span><span><strong>Đọc trực tuyến</strong><small>Mở tài liệu PDF ngay trên trình duyệt</small></span></div>
+      <div class="story-point"><span class="point-icon">03</span><span><strong>Trên mọi thiết bị</strong><small>Giao diện phù hợp điện thoại và máy tính</small></span></div>
+    </div>
+    <div class="auth-watermark">HN</div>
   </div>
-  <form class="panel auth-panel" method="post" action="/login">
-    <div class="panel-icon">↗</div><h2>Đăng nhập đại biểu</h2>
-    <p class="subtle">Sử dụng mã đại biểu trong danh sách hội nghị.</p>
-    {% if error %}<div class="alert error">{{ error }}</div>{% endif %}
+  <form class="surface-card auth-card" method="post" action="/login">
+    <div class="card-kicker">DÀNH CHO ĐẠI BIỂU</div>
+    <div class="auth-symbol" aria-hidden="true">↗</div>
+    <h2>Đăng nhập đại biểu</h2>
+    <p class="muted">Nhập thông tin đã được Ban tổ chức cung cấp.</p>
+    {% if error %}<div class="alert error" role="alert">{{ error }}</div>{% endif %}
     <label for="code">Mã đại biểu</label>
     <input id="code" name="code" autocomplete="username" placeholder="Ví dụ: TV001" required>
     <label for="full_name">Họ và tên</label>
-    <input id="full_name" name="full_name" autocomplete="name" placeholder="Nhập đúng họ tên trong danh sách" required>
-    <button class="btn primary full" type="submit">Đăng nhập <span>→</span></button>
-    <p class="hint">Chưa có mã đại biểu? Vui lòng liên hệ ban tổ chức.</p>
+    <input id="full_name" name="full_name" autocomplete="name" placeholder="Nhập đầy đủ họ và tên" required>
+    <button class="button button-primary button-wide" type="submit">Tiếp tục <span aria-hidden="true">→</span></button>
+    <p class="form-footnote">Cần hỗ trợ truy cập? Vui lòng liên hệ Ban tổ chức.</p>
   </form>
 </section>
 {% endblock %}

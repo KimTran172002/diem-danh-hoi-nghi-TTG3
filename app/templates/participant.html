@@ -1,27 +1,35 @@
 {% extends "base.html" %}
 {% block content %}
-<section class="welcome-row">
-  <div><div class="eyebrow">KHÔNG GIAN ĐẠI BIỂU</div><h1>Xin chào, {{ person["full_name"] }}</h1>
-    <p class="subtle">Thông tin hội nghị và các văn bản do ban tổ chức cung cấp.</p></div>
-  <span class="role-pill">{{ person["role"] }}</span>
+<section class="page-intro document-intro">
+  <div>
+    <div class="overline"><span class="overline-line"></span> KHÔNG GIAN ĐẠI BIỂU</div>
+    <h1>Thư viện <em>tài liệu hội nghị</em></h1>
+    <p class="intro-copy">Các văn bản và tài liệu được Ban tổ chức cung cấp, sẵn sàng để bạn tra cứu và đọc trực tuyến.</p>
+  </div>
+  <div class="intro-seal" aria-hidden="true"><span>HN</span><small>HỘI NGHỊ</small></div>
 </section>
-<div class="profile-strip">
-  <div><span>Mã đại biểu</span><strong>{{ person["code"] }}</strong></div>
-  <div><span>Đơn vị</span><strong>{{ person["organization"] or "Chưa cập nhật" }}</strong></div>
-  <div><span>Chức vụ</span><strong>{{ person["position"] or person["role"] }}</strong></div>
+<div class="welcome-banner">
+  <div class="welcome-icon" aria-hidden="true">✦</div>
+  <div><strong>Xin chào, {{ person["full_name"] }}</strong><p>Chúc bạn có một kỳ hội nghị hiệu quả.</p></div>
+  <span class="role-pill">{{ person["role"] }}</span>
 </div>
-<section class="section-heading"><div><div class="eyebrow">THƯ VIỆN TÀI LIỆU</div><h2>Văn bản hội nghị</h2><p class="subtle">Chọn một văn bản để mở và đọc trực tiếp trên trình duyệt.</p></div><span class="count-pill">{{ documents|length }} tài liệu</span></section>
-{% if documents %}
-<div class="document-grid">
-  {% for doc in documents %}
-  <article class="document-card">
-    <div class="pdf-icon">PDF</div>
-    <div class="document-info"><h3>{{ doc["title"] }}</h3><p>{{ doc["original_name"] }}</p><small>Đăng tải {{ doc["uploaded_at"] }}</small></div>
-    <a class="btn primary" href="/documents/{{ doc['id'] }}/view" target="_blank" rel="noopener">Đọc văn bản ↗</a>
-  </article>
-  {% endfor %}
-</div>
-{% else %}
-<div class="empty-state"><div class="empty-icon">▤</div><h3>Chưa có văn bản</h3><p>Ban tổ chức chưa tải lên tài liệu. Vui lòng quay lại sau.</p></div>
-{% endif %}
+<section class="document-section">
+  <div class="section-title-row">
+    <div><div class="section-kicker">KHO TÀI LIỆU</div><h2>Văn bản được chia sẻ</h2><p class="muted">Chọn “Mở tài liệu” để xem PDF trực tiếp trên trình duyệt.</p></div>
+    <span class="count-pill"><strong>{{ documents|length }}</strong> tài liệu</span>
+  </div>
+  {% if documents %}
+  <div class="document-grid">
+    {% for doc in documents %}
+    <article class="document-card">
+      <div class="document-card-top"><span class="pdf-badge"><span class="pdf-fold"></span>PDF</span><span class="document-type">VĂN BẢN</span></div>
+      <div class="document-info"><h3>{{ doc["title"] }}</h3><p class="document-filename">{{ doc["original_name"] }}</p><small><span class="tiny-dot"></span> Cập nhật {{ doc["uploaded_at"] }}</small></div>
+      <a class="button button-primary" href="/documents/{{ doc['id'] }}/view" target="_blank" rel="noopener">Mở tài liệu <span aria-hidden="true">↗</span></a>
+    </article>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="empty-state"><div class="empty-symbol">▤</div><h3>Chưa có tài liệu</h3><p>Ban tổ chức chưa tải lên tài liệu. Vui lòng quay lại sau.</p></div>
+  {% endif %}
+</section>
 {% endblock %}
